@@ -1,0 +1,180 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  color: white;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 50vw;
+  background-color: #FF4444;
+}
+.slider {
+  height: 80%;
+  width: 50%;
+  padding: 15px;
+  background-color: #AA0000;
+  border-radius: 15px;
+  box-shadow: 0 0 4px 3px #800000;
+}
+input[type="radio"] {
+  display: none;
+}
+.slider-wrapper {
+  overflow-x: hidden;
+  width: 100%;
+  height: 75%;
+  border-radius: 15px;
+}
+.slider-container {
+  background-color: rgb(65, 2, 2);
+  width: 400%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.slide {
+  flex-shrink: 0;
+  flex-basis: 25%;
+  height: 100%;
+  text-align: center;
+  transition: all 0.4s ease-out; 
+}
+.slide img {
+  height: 100%;
+}
+.bullet-text-wrapper {
+  margin-top: 3%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.text-wrapper {
+  flex-basis: 50%;
+  overflow-x: hidden;
+}
+.text-container {
+  display: flex;
+  width: 420%;
+}
+.text {
+  flex-shrink: 0;
+  flex-basis: 23%;
+  margin-right: 2%;
+  transition: all 0.4s ease-out; 
+}
+.bullet-container {
+  display: flex;
+  column-gap: 10%;
+}
+.bullet {
+  display: flex;
+  width: 35px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.bullet::after {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #800000;
+}
+.bullet:hover::after {
+  background-color: white;
+}
+.bullet:active::after {
+  background-color: #AAA;
+}
+
+/* scss is truly a blessing */
+#s1:checked ~ .slider-wrapper .first-slide {
+  margin-left: 0;
+}
+#s2:checked ~ .slider-wrapper .first-slide {
+  margin-left: -25%;
+}
+#s3:checked ~ .slider-wrapper .first-slide {
+  margin-left: -50%;
+}
+#s4:checked ~ .slider-wrapper .first-slide {
+  margin-left: -75%;
+}
+
+#s1:checked ~ .bullet-text-wrapper .text-wrapper .t1 {
+  margin-left: 0%;
+}
+#s2:checked ~ .bullet-text-wrapper .text-wrapper .t1 {
+  margin-left: -25%;
+}
+#s3:checked ~ .bullet-text-wrapper .text-wrapper .t1 {
+  margin-left: -50%;
+}
+#s4:checked ~ .bullet-text-wrapper .text-wrapper .t1 {
+  margin-left: -75%;
+}
+
+#s1:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(1)::after,
+#s2:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(2)::after,
+#s3:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(3)::after,
+#s4:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(4)::after,
+#s5:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(5)::after {
+  background-color: black;
+}
+
+#r1:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(1):active,
+#r2:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(2):active,
+#r3:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(3):active,
+#r4:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(4):active,
+#r5:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(5):active {
+  background-color: transparent;
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 0.7rem;
+  }
+  .text-wrapper {
+    flex-basis: 70%;
+  }
+  .bullet-container {
+    column-gap: 5px;
+  }
+  .bullet {
+    width: 15px;
+    height: 15px;
+  }
+  .bullet::after {
+    width: 10px;
+    height: 10px;
+  }
+}
+@media (max-width: 450px) {
+  .slider {
+    border-radius: 5px;
+  }
+  .slider-wrapper {
+    height: 60%;
+    border-radius: 5px;
+  }
+  .bullet-container {
+    column-gap: 0;
+  }
+  .bullet-text-wrapper {
+    flex-direction: column-reverse;
+  }
+  .text-wrapper {
+    width: 100%;
+  }
+  .text {
+    margin-top: 5px;
+  }
+}
