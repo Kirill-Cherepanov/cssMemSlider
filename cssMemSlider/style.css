@@ -11,15 +11,15 @@ body {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100vh;
+  height: 50vw;
   background-color: #FF4444;
 }
 .slider {
-  height: 70%;
+  height: 80%;
   width: 50%;
   padding: 15px;
   background-color: #AA0000;
-  border-radius: 3%;
+  border-radius: 15px;
   box-shadow: 0 0 4px 3px #800000;
 }
 input[type="radio"] {
@@ -28,7 +28,8 @@ input[type="radio"] {
 .slider-wrapper {
   overflow-x: hidden;
   width: 100%;
-  height: 65%;
+  height: 75%;
+  border-radius: 15px;
 }
 .slider-container {
   background-color: rgb(65, 2, 2);
@@ -40,13 +41,15 @@ input[type="radio"] {
 .slide {
   flex-shrink: 0;
   flex-basis: 25%;
+  height: 100%;
   text-align: center;
+  transition: all 0.4s ease-out; 
 }
-.slider-container img {
-  width: 100%;
+.slide img {
+  height: 100%;
 }
 .bullet-text-wrapper {
-  margin-top: 20px;
+  margin-top: 3%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -62,15 +65,30 @@ input[type="radio"] {
 .text {
   flex-shrink: 0;
   flex-basis: 25%;
+  transition: all 0.4s ease-out; 
 }
 .bullet-container {
   display: flex;
   column-gap: 10px;
 }
 .bullet {
+  display: flex;
+  width: 35px;
+  height: 25px;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
 }
+.bullet::after {
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #800000;
+}
 
+/* scss is truly a blessing */
 #s1:checked ~ .slider-wrapper .first-slide {
   margin-left: 0;
 }
@@ -83,7 +101,7 @@ input[type="radio"] {
 #s4:checked ~ .slider-wrapper .first-slide {
   margin-left: -75%;
 }
-  
+
 #s1:checked ~ .bullet-text-wrapper .text-wrapper .t1 {
   margin-left: 0%;
 }
@@ -97,12 +115,12 @@ input[type="radio"] {
   margin-left: -75%;
 }
 
-#s1:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(1),
-#s2:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(2),
-#s3:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(3),
-#s4:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(4),
-#s5:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(5) {
-  color: black;
+#s1:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(1)::after,
+#s2:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(2)::after,
+#s3:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(3)::after,
+#s4:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(4)::after,
+#s5:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(5)::after {
+  background-color: black;
 }
 
 #s1:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(1):hover,
@@ -119,4 +137,32 @@ input[type="radio"] {
 #r4:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(4):active,
 #r5:checked ~ .bullet-text-wrapper .bullet-container label:nth-child(5):active {
   background-color: transparent;
+}
+
+@media (max-width: 800px) {
+  html {
+    font-size: 11px;
+  }
+  .text-wrapper {
+    flex-basis: 70%;
+  }
+  .bullet-container {
+    column-gap: 5px;
+  }
+  .bullet {
+    width: 15px;
+    height: 15px;
+  }
+  .bullet::after {
+    width: 10px;
+    height: 10px;
+  }
+}
+@media (max-width: 450px) {
+  html {
+    font-size: 9px;
+  }
+  .bullet-container {
+    column-gap: 0;
+  }
 }
